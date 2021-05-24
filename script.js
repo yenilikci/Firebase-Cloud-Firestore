@@ -57,3 +57,27 @@
          console.log(`${silinecekBelge.id} silindi`);
      })
  });
+
+
+ //docChanges
+ db.collection('haberler').get().then((snapshot) => {
+    //console.log(snapshot);
+    console.log(snapshot.docChanges());
+});
+
+
+//sürekli dinleme
+db.collection('haberler').onSnapshot((snapshot) => {
+    //console.log(snapshot);
+    console.log(snapshot.docChanges());
+
+    snapshot.docChanges().forEach((change) => {
+        //console.log(change);
+        const doc = change.doc;
+        if (change.type == 'added') {
+            console.log(doc.data(), doc.id);
+        } else if (change.type == 'removed') {
+            console.log(doc.id);
+        }
+    })
+});
