@@ -29,8 +29,8 @@
  })
 
 
- //veri ekleme
- const button = document.querySelector('button');
+ //veri ekle
+ const button = document.querySelector('#btnEkle');
  button.addEventListener('click', () => {
 
      const now = new Date();
@@ -47,3 +47,13 @@
      })
 
  })
+
+
+ //veri sil
+ const buttonSil = document.querySelector('#btnSil');
+ buttonSil.addEventListener('click', () => {
+     const silinecekBelge = db.collection('haberler').doc('CAC5f8NdwOQf3LEfwuPJ');
+     silinecekBelge.delete().then(() => {
+         console.log(`${silinecekBelge.id} silindi`);
+     })
+ });
